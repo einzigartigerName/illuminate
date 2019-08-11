@@ -13,10 +13,11 @@ MAXVALUE = $(shell find /sys/class/backlight/*/max_brightness | head -1 | xargs 
 all: clean build
 
 build:
-	@echo "pub const MAX: i32 = $(MAXVALUE);" 									> $(BUILD)
+	@echo "pub const MAX: i32 = $(MAXVALUE);"									> $(BUILD)
 	@echo "pub const BRIGHTNESSFILE: &'static str = \"$(BRIGHTNESSFILE)\";" 	>> $(BUILD)
 
 	$(COMPILER) $(SOURCE) $(CFLAGS) -o $(TARGET)
+	strip --strip-unneeded $(TARGET)
 
 install:
 	$(INSTALL) $(INSTALL_ARGS) $(TARGET) $(INSTALL_DIR)
