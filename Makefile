@@ -1,6 +1,6 @@
 SOURCE			:= illuminate.rs
 BUILD			:= defs.rs
-CFLAGS			:= -C opt-level=3 -C opt-level=z
+CFLAGS			:= -C opt-level=z -C lto=yes
 TARGET			:= illuminate
 COMPILER		:= rustc
 INSTALL			:= install
